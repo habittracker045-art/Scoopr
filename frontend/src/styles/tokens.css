@@ -1,0 +1,36 @@
+/* Scoopr design tokens — strict monochrome. Do not add color values here. */
+:root {
+  /* Color */
+  --color-bg: #000000;
+  --color-surface: #141414;
+  --color-surface-raised: #1c1c1c;
+  --color-border: #2a2a2a;
+  --color-text: #ffffff;
+  --color-text-muted: #8a8a8a;
+  --color-text-faint: #5c5c5c;
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Type */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --nav-height: 64px;
+  --content-max-width: 520px;
+  --shadow-float: 0 8px 30px rgba(0, 0, 0, 0.55);
+  --blur-glass: 20px;
+}

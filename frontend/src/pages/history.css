@@ -1,0 +1,164 @@
+/* ---------- History page ---------- */
+.history-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- Search + filters (Redesign Phase, Prompt 6) ---------- */
+/* Wraps the search box and both filter pill rows (TopicFilter reuses
+   feed.css's `.topic-filter` class directly; SourceTypeFilter does too —
+   see that component's header comment). Search sits above the pills. */
+.history-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.history-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.history-search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+.history-search-input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 40px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.history-search-input::placeholder {
+  color: var(--color-text-muted);
+}
+.history-search-input:focus {
+  border-color: var(--color-text);
+}
+.history-search-clear {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+.history-search-clear:hover {
+  color: var(--color-text);
+}
+
+/* ---------- Compact list ---------- */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* The card itself stacks vertically (row, then an optional status line
+   underneath from a Share action) — the thumb/body/button row is its
+   own flex row so the status message doesn't have to fight the
+   align-items: center below. */
+.history-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+.history-item-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.history-item-thumb {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-text-faint);
+}
+.history-item-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.history-item-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.history-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.history-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.history-item-dot {
+  color: var(--color-text-faint);
+  flex-shrink: 0;
+}
+.history-item-time {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Icon-only Share button, sized to sit neatly beside a 40px thumbnail. */
+.history-item-share-btn {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.history-item-status {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: right;
+}

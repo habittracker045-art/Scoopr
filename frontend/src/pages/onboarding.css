@@ -1,0 +1,111 @@
+/* ---------- Onboarding flow ---------- */
+/* Deliberately NOT wrapped in .app-shell (see App.jsx's <OnboardingRoute>)
+   — no bottom nav, no profile avatar, full-screen like .auth-screen,
+   since the user hasn't picked anything yet and shouldn't be able to hop
+   to other tabs mid-flow. */
+.onboarding-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.onboarding-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.onboarding-wordmark {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.onboarding-skip {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: var(--space-1) 0;
+}
+.onboarding-skip:hover:not(:disabled) {
+  color: var(--color-text);
+}
+.onboarding-skip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Step progress dots ---------- */
+.onboarding-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: var(--space-5);
+}
+.onboarding-dot {
+  width: 22px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  transition: background-color 0.15s ease;
+}
+.onboarding-dot-active {
+  background: var(--color-text);
+}
+
+.onboarding-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.onboarding-subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+  line-height: 1.5;
+}
+
+.onboarding-step-card {
+  margin-bottom: var(--space-4);
+}
+
+.onboarding-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.onboarding-error {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.onboarding-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.onboarding-actions .ui-btn {
+  flex: 1;
+}
+
+.onboarding-hint {
+  margin-top: var(--space-5);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-faint);
+}

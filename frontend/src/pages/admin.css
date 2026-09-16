@@ -1,0 +1,140 @@
+/* ---------- Admin Panel page ---------- */
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.admin-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) 0;
+}
+
+.admin-subheading {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: -8px;
+}
+
+.admin-user-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.admin-user-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.admin-user-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.admin-user-identity {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.admin-user-username {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.admin-user-email {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.admin-user-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.admin-user-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.admin-row-error {
+  font-size: 13px;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.admin-self-hint {
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+/* ---------- Modal (role-change confirm / temp password reveal) ---------- */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+}
+
+.admin-modal {
+  width: 100%;
+  max-width: 360px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.admin-modal-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.admin-modal-body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.admin-modal-body strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.admin-modal-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.admin-temp-password {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  text-align: center;
+  word-break: break-all;
+}

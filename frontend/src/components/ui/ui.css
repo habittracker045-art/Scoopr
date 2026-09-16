@@ -1,0 +1,201 @@
+/* ---------- Button ---------- */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.08s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+.ui-btn:active {
+  transform: scale(0.98);
+}
+.ui-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+.ui-btn-primary {
+  background: var(--color-text);
+  color: #000000;
+}
+.ui-btn-primary:hover:not(:disabled) {
+  opacity: 0.86;
+}
+.ui-btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+.ui-btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+}
+.ui-btn-full {
+  width: 100%;
+}
+.ui-btn-sm {
+  padding: 10px 16px;
+  font-size: 13px;
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Card ---------- */
+.ui-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.ui-card-bordered {
+  border: 1px solid var(--color-border);
+}
+
+/* ---------- Input ---------- */
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.ui-label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.ui-input,
+.ui-textarea {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  color: var(--color-text);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  width: 100%;
+}
+.ui-textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.5;
+}
+.ui-input::placeholder,
+.ui-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+.ui-input:focus,
+.ui-textarea:focus {
+  border-color: var(--color-text);
+}
+.ui-input-error,
+.ui-textarea-error {
+  border-color: var(--color-text);
+  border-width: 2px;
+}
+.ui-error-text {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Pill / Tag ---------- */
+.ui-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  line-height: 1.4;
+}
+.ui-pill-active {
+  background: var(--color-text);
+  color: #000000;
+  border-color: var(--color-text);
+}
+.ui-pill-selectable {
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.ui-pill-selectable:hover:not(.ui-pill-active) {
+  border-color: var(--color-text-muted);
+}
+
+/* ---------- Toggle ---------- */
+.ui-toggle {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  min-width: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  padding: 0;
+}
+.ui-toggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ui-toggle[data-on='true'] {
+  background: var(--color-text);
+}
+.ui-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.ui-toggle[data-on='true'] .ui-toggle-thumb {
+  transform: translateX(20px);
+  background: #000000;
+}
+
+/* ---------- Loading: spinner + skeleton ---------- */
+.ui-spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-text);
+  animation: ui-spin 0.7s linear infinite;
+}
+@keyframes ui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ui-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-surface-raised) 37%,
+    var(--color-surface) 63%
+  );
+  background-size: 400% 100%;
+  animation: ui-shimmer 1.4s ease infinite;
+  border-radius: var(--radius-md);
+}
+@keyframes ui-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

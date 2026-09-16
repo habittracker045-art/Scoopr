@@ -1,0 +1,43 @@
+/* ---------- Create page ---------- */
+.create-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.create-form .ui-textarea {
+  font-size: 16px;
+  min-height: 120px;
+  border-radius: var(--radius-lg);
+}
+
+/* Same scrollable-row pattern as .topic-filter (feed.css) — a fixed
+   picker for the topic a new card belongs to, rather than a filter. */
+.create-topic-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.create-error {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Redesign Phase, Prompt 3: holds the single freshly-generated card
+   (<CarouselCard>, reused unmodified from the Feed carousel — see
+   Create.jsx). All of that card's own visuals (media, title, caption,
+   enrichment note, actions) come from feed.css's .carousel-card* rules,
+   already loaded globally (see main.jsx) — this class only adds the gap
+   between it and the form above. */
+.create-result {
+  margin-top: var(--space-2);
+}

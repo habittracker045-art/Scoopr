@@ -1,0 +1,83 @@
+/* ---------- Tips & Facts page ---------- */
+/* Redesign Phase, Prompt 4: this tab now holds at most one tip/fact at a
+   time (no more `.tips-facts-list` of appended rows), so this page-level
+   wrapper is now just the heading + either the empty state or one
+   <TipFactCard> + its "Generate another" button, stacked vertically. */
+.tips-facts-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ---------- Tip/fact card ---------- */
+/* Redesign Phase, Prompt 4: previously a compact horizontal row (label +
+   content + a bare icon-only share button, no Edit). Restructured to a
+   vertical layout — label, then content or the edit form, then an
+   action row — matching the same shape components/feed/CarouselCard.jsx
+   uses for its own content/actions, since this card gained the same
+   Edit-alongside-Share pattern that one already had. */
+.tip-fact-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.tip-fact-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.tip-fact-card-content {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* ---------- Actions row (Edit + Share) ---------- */
+/* Mirrors .carousel-card-actions in feed.css exactly, for visual
+   consistency between the two tabs' Edit-alongside-Share rows. */
+.tip-fact-card-actions {
+  margin-top: var(--space-2);
+  display: flex;
+  gap: var(--space-2);
+}
+.tip-fact-card-actions .ui-btn {
+  flex: 1;
+}
+
+/* ---------- Edit form ---------- */
+/* Mirrors .carousel-card-edit / .carousel-card-edit-actions in feed.css. */
+.tip-fact-card-edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.tip-fact-card-edit-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.tip-fact-card-edit-actions .ui-btn {
+  flex: 1;
+}
+
+.tip-fact-card-status {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ---------- Error message ---------- */
+/* A single inline line above the empty state / card, not a full
+   blocking error screen — generating can simply be retried via the same
+   Generate button, so there's no separate "Try again" affordance here
+   the way Feed's fetch-failure state has one. */
+.tips-facts-error {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 0;
+}

@@ -1,0 +1,229 @@
+/* ---------- App shell ---------- */
+.app-shell {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+.app-shell-content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 76px 20px calc(var(--nav-height) + 56px);
+}
+@media (max-width: 360px) {
+  .app-shell-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ---------- Bottom nav ---------- */
+.bottom-nav {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 24px;
+  z-index: 40;
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: var(--radius-full);
+  background: rgba(20, 20, 20, 0.72);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-float);
+}
+.bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 6px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  transition: color 0.15s ease;
+}
+.bottom-nav-item-active {
+  color: var(--color-text);
+}
+.bottom-nav-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------- Profile avatar + menu ---------- */
+.profile-avatar-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 45;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.profile-avatar-btn:hover {
+  border-color: var(--color-text-muted);
+}
+
+.profile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 44;
+  background: transparent;
+}
+
+.profile-menu {
+  position: fixed;
+  top: 68px;
+  right: 20px;
+  z-index: 46;
+  min-width: 208px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+}
+.profile-menu-name {
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.profile-menu-role {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 0 var(--space-3) var(--space-2);
+}
+.profile-menu-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-1) 0;
+}
+.profile-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 14px;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+}
+.profile-menu-item:hover {
+  background: var(--color-surface-raised);
+}
+.profile-menu-item-muted {
+  color: var(--color-text-muted);
+}
+
+/* ---------- Narrow mobile viewports (Phase 4, Prompt 7 polish pass) ----------
+   Everything above already uses fluid/flex layouts rather than fixed
+   widths, so this app already held up fine down to ~360px during the
+   polish-pass check. Below that (e.g. an iPhone SE-class 320px-wide
+   screen), the bottom nav's fixed 20px side margins plus its own 8px
+   inner padding started eating into how much room the 4 nav labels had,
+   and the profile avatar's 20px top offset sat a little close to the
+   status bar/notch on some devices. Tightening both by a few px at this
+   breakpoint only, rather than changing the shared spacing tokens
+   everything else keys off. */
+@media (max-width: 360px) {
+  .bottom-nav {
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    padding: 6px;
+  }
+  .bottom-nav-label {
+    font-size: 9px;
+  }
+  .profile-avatar-btn {
+    top: 14px;
+    right: 14px;
+  }
+}
+
+/* ---------- Install banner (Phase 5, Prompt 2) ---------- */
+.install-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+.install-banner-text {
+  flex: 1;
+  min-width: 0;
+}
+.install-banner-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.install-banner-hint {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+.install-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+.install-banner-install {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.install-banner-dismiss {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}

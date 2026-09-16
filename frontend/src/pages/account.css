@@ -1,0 +1,38 @@
+/* ---------- Account page ---------- */
+.account-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.account-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.account-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.account-field-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.account-password-notice {
+  gap: var(--space-2);
+}
+.account-row-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.account-row-hint {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}

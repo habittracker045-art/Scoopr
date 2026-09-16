@@ -1,0 +1,379 @@
+/* ---------- Feed page ---------- */
+.feed-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.feed-heading {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* ---------- Topic filter ---------- */
+.topic-filter {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: 2px;
+  /* hide the scrollbar without hiding the affordance to scroll */
+  scrollbar-width: none;
+}
+.topic-filter::-webkit-scrollbar {
+  display: none;
+}
+.topic-filter > * {
+  flex-shrink: 0;
+}
+
+/* ---------- Card list ---------- */
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.feed-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  text-align: left;
+}
+
+.feed-card-thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-text-faint);
+}
+.feed-card-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feed-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.feed-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.feed-card-dot {
+  color: var(--color-text-faint);
+}
+.feed-card-time {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+.feed-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.feed-card-caption {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Manual Create cards: the AI-generated context + suggested source/angle
+   (cards.enrichment_note). Set apart from the caption with a hairline
+   top border, per the design system's "subtle background/line contrast
+   over heavy borders" rule — small, muted, secondary to the headline. */
+.feed-card-enrichment {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.feed-card-enrichment-line {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Card actions (Approve/Edit/Skip/Share) ---------- */
+.card-actions {
+  margin-top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.card-actions-row .ui-btn {
+  flex: 0 0 auto;
+}
+.card-actions-editing .ui-field {
+  gap: 0;
+}
+.card-actions-editing .ui-textarea {
+  font-size: 14px;
+  min-height: 76px;
+}
+.card-actions-status {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ---------- Infinite scroll sentinel ---------- */
+.feed-sentinel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5) 0;
+  min-height: 40px;
+}
+
+/* ---------- Error state ---------- */
+.feed-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+.feed-retry-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.feed-retry-btn:hover {
+  border-color: var(--color-text-muted);
+}
+
+/* =====================================================================
+   Feed carousel (Redesign Phase, Prompt 2)
+   ---------------------------------------------------------------------
+   Everything above this point (.feed-card, .feed-card-*, .card-actions*)
+   still belongs to <CardListItem>/<CardActions> — untouched, and still
+   used as-is by the Create tab (see Create.jsx). Everything below is new
+   and scoped to the Feed tab's one-at-a-time carousel only, under
+   distinct `.carousel-*` / `.feed-carousel-*` class names so nothing
+   here can collide with or affect that shared list-row styling.
+   ===================================================================== */
+
+.feed-carousel-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-7) 0;
+}
+
+.feed-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.feed-carousel-stage {
+  width: 100%;
+  /* Let the browser handle vertical page scroll natively; only
+     horizontal drag is treated as a swipe gesture (see CardCarousel). */
+  touch-action: pan-y;
+}
+
+/* ---------- Carousel card ---------- */
+.carousel-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  width: 100%;
+  text-align: left;
+}
+
+.carousel-card-media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-faint);
+}
+.carousel-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel-card-img-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.carousel-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.carousel-card-dot {
+  color: var(--color-text-faint);
+}
+.carousel-card-time {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+
+.carousel-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+.carousel-card-caption {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+/* AI-generated context + suggested source angle (cards.enrichment_note)
+   — manually-created cards only. Same "hairline top border, small +
+   muted, secondary to the headline" treatment as the old feed-card
+   version, scaled up slightly for the carousel's larger card. */
+.carousel-card-enrichment {
+  margin-top: 2px;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.carousel-card-enrichment-line {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* "via <source>" — auto-pipeline cards with a real source URL only. */
+.carousel-card-source {
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+.carousel-card-actions {
+  margin-top: var(--space-2);
+  display: flex;
+  gap: var(--space-2);
+}
+.carousel-card-actions .ui-btn {
+  flex: 1;
+}
+
+.carousel-card-edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.carousel-card-edit-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.carousel-card-edit-actions .ui-btn {
+  flex: 1;
+}
+
+.carousel-card-status {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ---------- Carousel controls: arrows + "N of total" counter ---------- */
+.feed-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+}
+.feed-carousel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.08s ease;
+}
+.feed-carousel-arrow:hover {
+  border-color: var(--color-text-muted);
+  background: var(--color-surface-raised);
+}
+.feed-carousel-arrow:active {
+  transform: scale(0.96);
+}
+.feed-carousel-counter {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  min-width: 56px;
+  text-align: center;
+}
